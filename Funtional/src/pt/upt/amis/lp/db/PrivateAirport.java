@@ -1,15 +1,21 @@
 package pt.upt.amis.lp.db;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+
+@Entity
 public class PrivateAirport extends Airport {
+	
+	@Basic
 	private String listEnterprises[]=new String[10];
 	private int numEnterprise;
 	
-	public PrivateAirport(String name, String city, String country) {
-		super(name, city, country);	
+	public PrivateAirport(int idAirport, String name, String city, String country) {
+		super(idAirport, name, city, country);	
 	}
 
-	public PrivateAirport(String name, String city, String country, Company[] c, String e[]) {
-		super(name, city, country, c);
+	public PrivateAirport(int idAirport, String name, String city, String country, Company[] c, String e[]) {
+		super(idAirport, name, city, country, c);
 		this.listEnterprises=e;
 		numEnterprise=e.length;
 		

@@ -1,14 +1,27 @@
 package pt.upt.amis.lp.db;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Company {
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private int idCompany;
+	@Basic
 	private String name;
 	private Flight listFlights[]=new Flight[10];
 	private int numFlight=0;
 	
-	public Company(String name) {
+	public Company(int idCompany, String name) {
+		this.idCompany=idCompany;
 		this.name = name;
 	}
-	public Company(String name, Flight f[]) {
+	public Company(int idCompany, String name, Flight f[]) {
+		this.idCompany= idCompany;
 		this.name = name;
 		listFlights=f;
 		numFlight=f.length;
@@ -16,6 +29,13 @@ public class Company {
 	public void insertFlight(Flight flight) {
 		listFlights[numFlight]=flight;
 		numFlight++;
+	}
+	
+	public int getIdCompany() {
+		return idCompany;
+	}
+	public void setIdCompany(int idCompany) {
+		this.idCompany = idCompany;
 	}
 	public String getName() {
 		return name;
@@ -30,22 +50,11 @@ public class Company {
 		this.numFlight = numFlight;
 	}
 	
+
 	public Flight getFlight(int i) {
 		return listFlights[i];
 	}
 	
-	public Flight getFlight(String id) {
-		boolean find =false;
-		int i=0;
-		Flight f=null;
-		while ((find==false)&&(i<listFlights.length)) {
-			if(id==listFlights[i].getIdflight()) {
-				find=true;
-				f=listFlights[i];
-			}
-			i++;
-		}
-		return f;
-	}
+	
 
 }

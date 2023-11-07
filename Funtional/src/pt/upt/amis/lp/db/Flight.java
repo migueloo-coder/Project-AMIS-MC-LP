@@ -1,7 +1,17 @@
 package pt.upt.amis.lp.db;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Flight {
-	private String idflight;
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private int idFlight;
+	@Basic
 	private String originCity;
 	private String destinationCity;
 	private double cost;
@@ -9,9 +19,9 @@ public class Flight {
 	private int numCurrentPassengers;
 	private Passenger listPassengers[];
 	
-	public Flight(String idflight, String originCity, String destinationCity, double cost, int numMaxPassengers) {
+	public Flight(int idFlight, String originCity, String destinationCity, double cost, int numMaxPassengers) {
 		
-		this.idflight = idflight;
+		this.idFlight = idFlight;
 		this.originCity = originCity;
 		this.destinationCity = destinationCity;
 		this.cost = cost;
@@ -25,12 +35,12 @@ public class Flight {
 		numCurrentPassengers++;
 	}
 
-	public String getIdflight() {
-		return idflight;
+	public int getIdFlight() {
+		return idFlight;
 	}
 
-	public void setIdflight(String idflight) {
-		this.idflight = idflight;
+	public void setIdFlight(int idFlight) {
+		this.idFlight = idFlight;
 	}
 
 	public String getOriginCity() {

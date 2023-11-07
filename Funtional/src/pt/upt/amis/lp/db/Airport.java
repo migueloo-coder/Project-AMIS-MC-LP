@@ -1,20 +1,34 @@
 package pt.upt.amis.lp.db;
 
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Airport {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private int idAirport;
+	@Basic
 	private String name;
 	private String city;
 	private String country;
 	private Company listCompanys[]=new Company[10];
 	private int numCompany;
 	
-	public Airport(String name, String city, String country) {	
+	public Airport(int idAirport, String name, String city, String country) {
+		this.idAirport= idAirport;
 		this.name = name;
 		this.city = city;
 		this.country = country;
 		this.numCompany=0;
 	}
 	
-	public Airport(String name, String city, String country, Company c[]) {	
+	public Airport(int idAirport, String name, String city, String country, Company c[]) {	
+		this.idAirport= idAirport;
 		this.name = name;
 		this.city = city;
 		this.country = country;
@@ -25,6 +39,14 @@ public class Airport {
 	public void insertCompany(Company company) {
 		listCompanys[numCompany]=company;
 		numCompany++;
+	}
+
+	public int getIdAirport() {
+		return idAirport;
+	}
+
+	public void setId(int idAirport) {
+		this.idAirport = idAirport;
 	}
 
 	public String getName() {

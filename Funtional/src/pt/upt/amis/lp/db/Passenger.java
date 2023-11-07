@@ -1,27 +1,43 @@
 package pt.upt.amis.lp.db;
 
+import java.util.Date;
+
+import javax.persistence.Basic;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class Passenger {
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private int idDocument; 	
+	@Basic
 	private String names;
 	private String surnames;
 	private String genre;
-	private String dateBirth; 
 	private String typeId; 
-	private int documetId; 
 	private String address; 
 	private String telephone; 
 	private String email; 
 	private String passport;
 	private String nationality;
+	@Temporal(TemporalType.DATE)
+	private Date dateBirth; 
 	
-	public Passenger(String names, String surnames, String genre, String dateBirth, String typeId, int documetId,
+	
+	public Passenger(int idDocument, String names, String surnames, String genre, Date dateBirth, String typeId, 
 			String address, String telephone, String email, String passport, String nationality) {
 		
+		this.idDocument = idDocument;
 		this.names = names;
 		this.surnames = surnames;
 		this.genre = genre;
 		this.dateBirth = dateBirth;
 		this.typeId = typeId;
-		this.documetId = documetId;
 		this.address = address;
 		this.telephone = telephone;
 		this.email = email;
@@ -29,6 +45,13 @@ public class Passenger {
 		this.nationality = nationality;
 	}
 
+	public int getIdDocument() {
+		return idDocument;
+	}
+
+	public void setIdDocument(int idDocument) {
+		this.idDocument = idDocument;
+	}
 	public String getNames() {
 		return names;
 	}
@@ -53,11 +76,11 @@ public class Passenger {
 		this.genre = genre;
 	}
 
-	public String getDateBirth() {
+	public Date getDateBirth() {
 		return dateBirth;
 	}
 
-	public void setDateBirth(String dateBirth) {
+	public void setDateBirth(Date dateBirth) {
 		this.dateBirth = dateBirth;
 	}
 
@@ -69,13 +92,6 @@ public class Passenger {
 		this.typeId = typeId;
 	}
 
-	public int getDocumetId() {
-		return documetId;
-	}
-
-	public void setDocumetId(int documetId) {
-		this.documetId = documetId;
-	}
 
 	public String getAddress() {
 		return address;
