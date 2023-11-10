@@ -1,10 +1,13 @@
 package pt.upt.amis.lp.db;
 
-public class Main {
+import javax.management.Query;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+public class Main { public static void main (String []) {
+	
+		
+		
 	}
 
 }
