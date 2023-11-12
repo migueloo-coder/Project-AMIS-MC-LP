@@ -1,6 +1,6 @@
 package lab3;
 
-//Classe derivada (herança)
+
 public class Bicicleta extends Veiculo {
  private boolean eletricamenteAssistida;
 

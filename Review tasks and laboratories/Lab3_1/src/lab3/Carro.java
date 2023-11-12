@@ -1,6 +1,6 @@
 package lab3;
 
-//Classe derivada (herança)
+
 public class Carro extends Veiculo {
  private String modelo;
  private double quilometragem;

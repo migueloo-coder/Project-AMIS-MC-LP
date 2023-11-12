@@ -4,7 +4,7 @@ interface Ordenavel {
     String getMarca();
 }
 
-// Classe base
+
 public class Veiculo implements Ordenavel {
     private String marca;
     private double precoAluguer;
