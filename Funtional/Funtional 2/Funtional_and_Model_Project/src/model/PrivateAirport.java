@@ -23,7 +23,7 @@ public class PrivateAirport extends Airport{
 		this.numEnterprise= e.length;
 		
 		}
-		public void insertarEmpresa (String e) {
+		public void insertEnterprise (String e) {
 		listEnterprises [numEnterprise] = e;
 		numEnterprise++;
 		}

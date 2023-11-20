@@ -1,6 +1,6 @@
 package model;
 
-import java.util.Date;
+
 
 
 public class Passenger {
@@ -15,10 +15,10 @@ public class Passenger {
 	private String email; 
 	private String passport;
 	private String nationality;
-	private Date dateBirth; 
+	private String dateBirth; 
 	
 	
-	public Passenger(int idDocument, String names, String surnames, String genre, Date dateBirth, String typeId, 
+	public Passenger(int idDocument, String names, String surnames, String genre, String dateBirth, String typeId, 
 			String address, String telephone, String email, String passport, String nationality) {
 		
 		this.idDocument = idDocument;
@@ -65,11 +65,11 @@ public class Passenger {
 		this.genre = genre;
 	}
 
-	public Date getDateBirth() {
+	public String getDateBirth() {
 		return dateBirth;
 	}
 
-	public void setDateBirth(Date dateBirth) {
+	public void setDateBirth(String dateBirth) {
 		this.dateBirth = dateBirth;
 	}
 
