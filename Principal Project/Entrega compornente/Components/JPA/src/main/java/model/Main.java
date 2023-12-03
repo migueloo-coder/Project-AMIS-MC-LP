@@ -134,29 +134,10 @@ public class Main {
 		
 		em.getTransaction().commit();
 		//		
-		System.out.println("Cleaned DB");
+		System.out.println("DATA INSERT DB");
 		System.out.println("------------------------");
 		// Begin a new local transaction so that we can persist new entities
-		em.getTransaction().begin();
-
 		
-		em.getTransaction().commit();
-		//
-		// print the data in the database
-		//
-		/*readers = rs.findAllReaders();
-		System.out.println("------------------------");
-		System.out.println("Readers table");
-		for (Reader a : readers) {
-			System.out.println(a);
-		}*/
-		//
-		//books = bs.findAllBooks();
-		//System.out.println("------------------------");
-		//System.out.println("Books table");
-		//for (Book t : books) {
-			//System.out.println(t);
-		//}
 		System.out.println("------------------------");
 		System.out.println("\n\nFinished!!!");
 		
