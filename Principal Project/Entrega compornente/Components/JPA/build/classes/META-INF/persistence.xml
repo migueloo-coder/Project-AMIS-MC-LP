@@ -22,7 +22,7 @@
             <property name="javax.persistence.jdbc.driver"
                 value="org.apache.derby.jdbc.EmbeddedDriver" />
             <property name="javax.persistence.jdbc.url"
-                value="jdbc:derby:C:\Users\Miguel Pinzon\Desktop\Entrega compornente\Components\JPA\Library;create=true" />
+                value="jdbc:derby:C:\Users\Miguel Pinzon\Desktop\Project-AMIS-MC-LP\Principal Project\Entrega compornente\Components\JPA\Library;create=true" />
             <property name="javax.persistence.jdbc.user" value="Library" />
             <property name="javax.persistence.jdbc.password"
                 value="Library" />

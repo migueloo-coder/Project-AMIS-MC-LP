@@ -18,7 +18,7 @@ protected EntityManager em;
 			pua = new PublicAirport();
 			em.persist(pua);
 		}
-		pua.setId(idAirport);
+		pua.setIdAirport(idAirport);
 		pua.setName(name);
 		pua.setCity(city);
 		pua.setCountry(country);

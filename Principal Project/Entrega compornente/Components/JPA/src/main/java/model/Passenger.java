@@ -1,11 +1,19 @@
 package model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+
+
 @Entity
-public class Passenger {
+public class Passenger implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int idDocument; 	
@@ -19,6 +27,9 @@ public class Passenger {
 	private String passport;
 	private String nationality;
 	private String dateBirth; 
+	
+	@OneToMany
+	private List<Flight> flights = new ArrayList<Flight>();
 	
 	public Passenger() {}
 	
@@ -125,5 +136,17 @@ public class Passenger {
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
+	
+	/*public List<Flight> getFlights() {
+		return flights;
+	}
+
+	public String toString() {
+		String st = "Reader id=" + id + "  phone=" + phone + "  name=" + name + "\n";
+		for (Book t : books) {
+			st += "  " + t + "\n";
+		}
+		return st;
+	}*/
 	
 }

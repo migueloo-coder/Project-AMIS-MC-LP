@@ -40,7 +40,7 @@ public class Main {
 		return emanager;
 	}
 	
-	public static void fill() {
+	public static void fill(Airport air[]) {
 		System.out.println("========");
 		System.out.println("  FILL");
 		System.out.println("========");
@@ -48,88 +48,40 @@ public class Main {
 		Query q = null;
 		List<Airport> airports = null;
 		List<Company> companys = null;
+		List<Flight> flights = null;
+		List<Passenger> passengers = null;
+		List<PrivateAirport> privateAirports = null;
+		List<PublicAirport> publicAirports = null;
+		
 		// Remove the existing entries
+		
 		em.getTransaction().begin();
+		
 		AirportService as = new AirportService(getEM());
 		List<Airport> airportList = as.findAllAirports();
 		for (Airport a : airportList) {
 			as.removeAirport(a.getIdAirport());
 		}
-		/*BookService bs = new BookService(getEM());
-		List<Book> bookList = bs.findAllBooks();
-		for (Book b : bookList) {
-			bs.removeBook(b.getId());
+		
+		CompanyService comps = new CompanyService(getEM());
+		List<Company> companyList = comps.findAllCompanys();
+		for (Company comp : companyList) {
+			comps.removeCompany(comp.getIdCompany());
 		}
-		em.getTransaction().commit();
-		//
-		System.out.println("Cleaned DB");
-		System.out.println("------------------------");
-		// Begin a new local transaction so that we can persist new entities
-		em.getTransaction().begin();
-		// create students
-		Reader r1 = rs.updateReader(0,"Alice","111111111");
-		Reader r2 = rs.updateReader(0,"Bruno","222222222");
-		Reader r3 = rs.updateReader(0,"Carlos","333333333");
-		Reader r4 = rs.updateReader(0,"Duarte","444444444");
-		// create classes and assign them to students
 		
-		Book b1 = bs.updateBook(0, "IA", "autor 1", false);
-		r1.getBooks().add(b1);
-		r3.getBooks().add(b1);
-		Book b2 = bs.updateBook(0, "POO", "author 2", false);
-		r3.getBooks().add(b2);
-		Book b3 = bs.updateBook(0, "SD", "author 3", false);
-		r4.getBooks().add(b3);
-		Book b4 = bs.updateBook(0, "PROJ", "author 2", false);
-		r3.getBooks().add(b4);
-		Book b5 = bs.updateBook(0, "Lusiadas", "Camões", true);
-		Book b6 = bs.updateBook(0, "História", "author 4", true);
-		Book b7 = bs.updateBook(0, "Os Maias", "Eça de Queirós", true);
-
-		// Commit the transaction, which will cause the entity to
-		// be stored in the database
-		em.getTransaction().commit();
-		//
-		// print the data in the database
-		//
-		readers = rs.findAllReaders();
-		System.out.println("------------------------");
-		System.out.println("Readers table");
-		for (Reader a : readers) {
-			System.out.println(a);
+		FlightService flis = new FlightService(getEM());
+		List<Flight> flightList = flis.findAllFlights();
+		for (Flight fli : flightList) {
+			flis.removeFlight(fli.getIdDBFlight());
 		}
+		
+		PassengerService passe = new PassengerService(getEM());
+		List<Passenger> passengerList = passe.findAllPassengers();
+		for (Passenger pass : passengerList) {
+			passe.removePassenger(pass.getIdDocument());
+		}
+		
 		//
-		//books = bs.findAllBooks();
-		//System.out.println("------------------------");
-		//System.out.println("Books table");
-		//for (Book t : books) {
-			//System.out.println(t);
-		//}
-		System.out.println("------------------------");
-		System.out.println("\n\nFinished!!!");*/
-		
-		
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	//**********************************************************************************************************************************************************************************************************************************
-	public static void insertDataSet (Airport air[]) {
-		try {
 		air[0]= new PublicAirport(1020,"Airport International ElDorado","Bogota. D.C.","Colombia",5000000);
 		air[0].insertCompany(new Company(2010,"Avianca"));
 		air[0].insertCompany(new Company(2011,"LATAM"));
@@ -174,12 +126,104 @@ public class Main {
 		air[3].getCompany("Iberia").insertFlight(new Flight(13, "IBE852","Madrid","Belgica", 400.00, 200));
 		air[3].getCompany("AirEuropa").getFlights("AE365").insertPassenger(new Passenger(123456, "Miguel","Caro","Masculino", "DNI","Calle 44a #75e","3194569877","migueloo@gmail.com","AY3244","Colombiano","02/10/2001"));
 		air[3].getCompany("Iberia").getFlights("IBE852").insertPassenger(new Passenger(456789, "Jose","Reiveira","Masculino", "DNI","Calle 78a #5","317885446","jriveira@gmail.com","AX45224","Colombiano","10/12/1985"));
-		} catch (Exception e) {
-	        System.out.println("Error data Import: " + e.getMessage());
-	    }
+		 for (Airport airport : air) {
+	            em.persist(airport);
+	        }
+		
+		//
+		
+		em.getTransaction().commit();
+		//		
+		System.out.println("Cleaned DB");
+		System.out.println("------------------------");
+		// Begin a new local transaction so that we can persist new entities
+		em.getTransaction().begin();
+
+		
+		em.getTransaction().commit();
+		//
+		// print the data in the database
+		//
+		/*readers = rs.findAllReaders();
+		System.out.println("------------------------");
+		System.out.println("Readers table");
+		for (Reader a : readers) {
+			System.out.println(a);
+		}*/
+		//
+		//books = bs.findAllBooks();
+		//System.out.println("------------------------");
+		//System.out.println("Books table");
+		//for (Book t : books) {
+			//System.out.println(t);
+		//}
+		System.out.println("------------------------");
+		System.out.println("\n\nFinished!!!");
+		
+		
 	}
 	
 	
+	
+	
+	
+
+	//**********************************************************************************************************************************************************************************************************************************
+	/*public static void insertDataSet (Airport air[]) {
+		try {
+			
+		air[0]= new PublicAirport(1020,"Airport International ElDorado","Bogota. D.C.","Colombia",5000000);
+		air[0].insertCompany(new Company(2010,"Avianca"));
+		air[0].insertCompany(new Company(2011,"LATAM"));
+		air[0].insertCompany(new Company(2012,"AirEuropa"));
+		air[0].insertCompany(new Company(2013,"Iberia"));
+		air[0].getCompany("Avianca").insertFlight(new Flight(1,"AV123", "Bogota", "Ciudad de Mexico", 300.00, 200));
+		air[0].getCompany("Avianca").insertFlight(new Flight(2,"AV211","Bogota","Ciudad de Mexico", 400.00, 200));
+		air[0].getCompany("LATAM").insertFlight(new Flight(3,"LAT211","Bogota","Buenos Aires", 400.00, 200));
+		air[0].getCompany("AirEuropa").insertFlight(new Flight(4,"AE365","Bogota","Madrid", 400.00, 200));
+		air[0].getCompany("Iberia").insertFlight(new Flight(5,"IBE211","Bogota","Paris", 400.00, 200));
+		air[0].getCompany("Avianca").getFlights("AV211").insertPassenger(new Passenger(8562248, "Daniel","Ruiz","Masculino", "DNI","Calle 44a #75e","319487556","dago@gmail.com","AY3985","Colombiano","09/12/2001"));
+		air[0].getCompany("Avianca").getFlights("AV123").insertPassenger(new Passenger(123456, "Miguel","Caro","Masculino", "DNI","Calle 44a #75e","3194569877","migueloo@gmail.com","AY3244","Colombiano","02/10/2001"));
+		air[0].getCompany("Avianca").getFlights("AV123").insertPassenger(new Passenger(456789, "Jose","Reiveira","Masculino", "DNI","Calle 78a #5","317885446","jriveira@gmail.com","AX45224","Colombiano","10/12/1985"));
+		air[0].getCompany("LATAM").getFlights("LAT211").insertPassenger(new Passenger(987456, "Maria","Ruiz","Femenino", "DNI","Carrera 21 #89a","321775997","mariaruiz@gmail.com","RT34667","Colombiana","21/09/1999"));
+		
+		air[1]= new PrivateAirport(2020,"Central International Enterprise","Medellin","Colombia");
+		air[1].insertCompany(new Company(2010,"Avianca"));
+		air[1].insertCompany(new Company(2011,"LATAM"));
+		air[1].insertCompany(new Company(2012,"AirEuropa"));
+		air[1].insertCompany(new Company(2013,"Iberia"));
+		String enterprise[]= {"AIRBUS","AVINCIS"};
+		((PrivateAirport)air[1]).insertEnterprises(enterprise);
+		air[1].getCompany("Avianca").insertFlight(new Flight(6,"AV123", "Bogota", "Ciudad de Mexico", 300.00, 200));
+		air[1].getCompany("LATAM").insertFlight(new Flight(7,"LAT211","Bogota","Buenos Aires", 400.00, 200));
+		air[1].getCompany("AirEuropa").insertFlight(new Flight(8,"AE365","Bogota","Madrid", 400.00, 200));
+		air[1].getCompany("Iberia").insertFlight(new Flight(9, "IBE211","Bogota","Paris", 400.00, 200));
+		air[1].getCompany("Avianca").getFlights("AV123").insertPassenger(new Passenger(123456, "Miguel","Caro","Masculino", "DNI","Calle 44a #75e","3194569877","migueloo@gmail.com","AY3244","Colombiano","02/10/2001"));
+		air[1].getCompany("Avianca").getFlights("AV123").insertPassenger(new Passenger(456789, "Jose","Reiveira","Masculino", "DNI","Calle 78a #5","317885446","jriveira@gmail.com","AX45224","Colombiano","10/12/1985"));
+		air[1].getCompany("LATAM").getFlights("LAT211").insertPassenger(new Passenger(987456, "Maria","Ruiz","Femenino", "DNI","Carrera 21 #89a","321775997","mariaruiz@gmail.com","RT34667","Colombiana","21/09/1999"));
+		
+		air[2]= new PublicAirport(1021,"Aeropuerto de Oporto-Francisco Sá Carneiro","Oporto","Portugal",5000000);
+		air[2].insertCompany(new Company(2012,"AirEuropa"));
+		air[2].insertCompany(new Company(2013,"Iberia"));
+		air[2].getCompany("AirEuropa").insertFlight(new Flight(10,"AE987","Oporto","Roma", 400.00, 200));
+		air[2].getCompany("Iberia").insertFlight(new Flight(11,"IBE211","Oporto","Monaco", 400.00, 200));
+		air[2].getCompany("AirEuropa").getFlights("AE987").insertPassenger(new Passenger(123456, "Miguel","Caro","Masculino", "DNI","Calle 44a #75e","3194569877","migueloo@gmail.com","AY3244","Colombiano","02/10/2001"));
+		
+		air[3]= new PublicAirport(1022,"Aeropuerto Adolfo Suárez Madrid-Barajas","Madrid","Espanha",5000000);
+		air[3].insertCompany(new Company(2012,"AirEuropa"));
+		air[3].insertCompany(new Company(2013,"Iberia"));	
+		air[3].getCompany("AirEuropa").insertFlight(new Flight(12, "AE365","Madrid","Miami", 400.00, 200));
+		air[3].getCompany("Iberia").insertFlight(new Flight(13, "IBE852","Madrid","Belgica", 400.00, 200));
+		air[3].getCompany("AirEuropa").getFlights("AE365").insertPassenger(new Passenger(123456, "Miguel","Caro","Masculino", "DNI","Calle 44a #75e","3194569877","migueloo@gmail.com","AY3244","Colombiano","02/10/2001"));
+		air[3].getCompany("Iberia").getFlights("IBE852").insertPassenger(new Passenger(456789, "Jose","Reiveira","Masculino", "DNI","Calle 78a #5","317885446","jriveira@gmail.com","AX45224","Colombiano","10/12/1985"));
+		
+		
+		} catch (Exception e) {
+	        System.out.println("Error data Import: " + e.getMessage());
+	    }
+	
+	}
+	*/
 	// MENUS 
 	//**********************************************************************************************************************************************************************************************************************************
 	//**********************************************************************************************************************************************************************************************************************************
@@ -196,26 +240,31 @@ public class Main {
 
             switch (op) {
                 case 1:
-                	scanner.nextLine();
+                	
                 	System.out.println("\nEnter the number of airports: ");
                 	System.out.print(">>: ");
                     numAirports = scanner.nextInt();
                     airports = new Airport[numAirports];
                     System.out.println("\nDATA LOADED CORRECTLY!!.\n");
-                    insertDataSet(airports);
+                    //insertDataSet(airports);
+                    fill(airports);
+                    scanner.nextLine();
                     break;
-                case 2:
-                	scanner.nextLine();
+                case 2:     	
                 	 System.out.println("\nINSERT MENU\n");
                 	menuIntsertData();
-                    break;
-                case 3:
                 	scanner.nextLine();
+                    break;
+                case 3:                	
                     System.out.println("\nMANAGEMENT MENU\n");
                     menu2();
-                    
+                    scanner.nextLine();
                     break;             
-                case 4:
+                case 4:             	
+                   
+                    scanner.nextLine();
+                    break;
+                case 5:
                 	scanner.nextLine();
                     System.out.println("Leaving the programme - see you later!");
                     break;
@@ -231,7 +280,7 @@ public class Main {
                 op = 0; 
             }
             
-        } while (op != 4);
+        } while (op != 5);
 
         
 	}
@@ -242,7 +291,8 @@ public class Main {
         System.out.println("* 1. Insert pre-defined Data Set    *");
         System.out.println("* 2. Enter Manual Data              *");
         System.out.println("* 3. Management Menu                *");
-        System.out.println("* 4. Log out of the system          *");
+        System.out.println("* 4. Charge DATA BASE               *");
+        System.out.println("* 5. Log out of the system          *");
         System.out.println("*************************************");
     }
 	//**********************************************************************************************************************************************************************************************************************************

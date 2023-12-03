@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 
 @Entity
-public class PrivateAirport extends Airport{
+public class PrivateAirport extends Airport implements Serializable{
 
 	private String listEnterprises[]=new String[10];
 	private int numEnterprise;

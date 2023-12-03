@@ -19,7 +19,7 @@ public class AirportService {
 			a = new Airport();
 			em.persist( a);
 		}
-		a.setId(idAirport);
+		a.setIdAirport(idAirport);
 		a.setName(name);
 		a.setCity(city);
 		a.setCountry(country);

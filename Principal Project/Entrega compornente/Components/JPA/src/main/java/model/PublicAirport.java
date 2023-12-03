@@ -1,9 +1,11 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 
 @Entity
-public class PublicAirport extends Airport{
+public class PublicAirport extends Airport implements Serializable{
 	
 	private double subsidy;
 

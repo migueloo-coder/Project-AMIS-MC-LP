@@ -1,12 +1,14 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Flight {
+public class Flight implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE)
 	private int idDBFlight;
@@ -17,6 +19,8 @@ public class Flight {
 	private int numMaxPassengers;
 	private int numCurrentPassengers;
 	private Passenger listPassengers[];
+	
+	
 	
 	public Flight() {}
 	public Flight(int idDBFlight, String idFlight, String originCity, String destinationCity, double cost, int numMaxPassengers) {
